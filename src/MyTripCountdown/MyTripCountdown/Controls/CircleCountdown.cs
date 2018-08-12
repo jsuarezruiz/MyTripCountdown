@@ -13,9 +13,6 @@ namespace MyTripCountdown.Controls
         public static readonly BindableProperty ProgressProperty =
             BindableProperty.Create(nameof(Progress), typeof(float), typeof(CircleCountdown), 0f, propertyChanged: OnPropertyChanged);
 
-        public static readonly BindableProperty LineBackgroundColorProperty =
-            BindableProperty.Create(nameof(LineBackgroundColor), typeof(Color), typeof(CircleCountdown), Color.Default, propertyChanged: OnPropertyChanged);
-
         public static readonly BindableProperty ProgressStartColorProperty =
             BindableProperty.Create(nameof(ProgressStartColor), typeof(Color), typeof(CircleCountdown), Color.Blue, propertyChanged: OnPropertyChanged);
 
@@ -35,12 +32,6 @@ namespace MyTripCountdown.Controls
         {
             get { return (float)GetValue(ProgressProperty); }
             set { SetValue(ProgressProperty, value); }
-        }
-
-        public Color LineBackgroundColor
-        {
-            get { return (Color)GetValue(LineBackgroundColorProperty); }
-            set { SetValue(LineBackgroundColorProperty, value); }
         }
 
         public Color ProgressStartColor
@@ -69,7 +60,6 @@ namespace MyTripCountdown.Controls
             canvas.Clear();
             canvas.Save();
             canvas.RotateDegrees(0, size / 2, size / 2);
-            DrawBackgroundCircle(info, canvas);
             DrawProgressCircle(info, canvas);
 
             canvas.Restore();
@@ -79,20 +69,6 @@ namespace MyTripCountdown.Controls
         {
             var circleProgress = bindable as CircleCountdown;
             circleProgress?.InvalidateSurface();
-        }
-
-        private void DrawBackgroundCircle(SKImageInfo info, SKCanvas canvas)
-        {
-            var paint = new SKPaint
-            {
-                Color = LineBackgroundColor.ToSKColor(),
-                StrokeWidth = StrokeWidth,
-                IsStroke = true,
-                IsAntialias = true,
-                StrokeCap = SKStrokeCap.Round
-            };
-
-            DrawCircle(info, canvas, paint, SweepAngle);
         }
 
         private void DrawProgressCircle(SKImageInfo info, SKCanvas canvas)
