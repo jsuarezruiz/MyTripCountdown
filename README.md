@@ -29,7 +29,7 @@ My Trip Countdown app is available for two platforms:
 
 ## Screens
 
-<img src="images/MyTripCountdown.png" alt="Home" Width="320" />
+<img src="images/MyTripCountdown.png" alt="My Trip Countdown" Width="320" />
 
 
 ## Requirements
