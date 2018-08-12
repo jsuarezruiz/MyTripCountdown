@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MyTripCountdown.Views.MyTripCountdownView" 
+    xmlns:controls="clr-namespace:MyTripCountdown.Controls"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    xmlns:skor="clr-namespace:Skor.Controls;assembly=Skor.Controls"
+    BackgroundColor="{StaticResource WhiteColor}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="TripTitleStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource SourceSansSemiBold}" />
+                <Setter Property="FontSize" Value="{StaticResource FontSize40}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="LineBreakMode" Value="WordWrap" />
+                <Setter Property="Margin" Value="48, 0, 48, 12" />
+            </Style>
+
+            <Style x:Key="BigCountdownStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource SourceSansRegular}" />
+                <Setter Property="FontSize" Value="{StaticResource FontSize44}" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+
+            <Style x:Key="SmallCountdownStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource SourceSansRegular}" />
+                <Setter Property="FontSize" Value="{StaticResource FontSize20}" />
+                <Setter Property="TextColor" Value="{StaticResource TextGrayColor}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+            
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Label
+                Grid.Row="0"
+                Text="My Trip Countdown"
+                Style="{StaticResource TripTitleStyle}"/>
+            <Grid
+                Grid.Row="1">
+                <ffimageloading:CachedImage  
+                    Aspect="AspectFit"
+                    Source="{Binding MyTrip.Picture}"
+                    Margin="12">
+                    <ffimageloading:CachedImage.Transformations>
+                        <fftransformations:CircleTransformation />
+                    </ffimageloading:CachedImage.Transformations>
+                </ffimageloading:CachedImage>
+                <controls:CircleCountdown 
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Progress="{Binding Progress}"
+                    ProgressStartColor="{StaticResource ProgressPinkColor}"
+                    ProgressEndColor="{StaticResource ProgressBlueColor}"
+                    LineBackgroundColor="{StaticResource WhiteColor}"
+                    StrokeWidth="10"/>
+            </Grid>
+            <Grid
+                Grid.Row="2"
+                RowSpacing="0"
+                Margin="60, 24">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label 
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Text="{Binding Days, StringFormat='{0:D2}'}"
+                    Style="{StaticResource BigCountdownStyle}"/>
+                <Label 
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    Text="days"
+                    Style="{StaticResource SmallCountdownStyle}"/>
+                <Label 
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Text=":"
+                    Style="{StaticResource BigCountdownStyle}"/>
+                <Label 
+                    Grid.Column="2"
+                    Grid.Row="0"
+                    Text="{Binding Hours, StringFormat='{0:D2}'}"
+                    Style="{StaticResource BigCountdownStyle}"/>
+                <Label 
+                    Grid.Column="2"
+                    Grid.Row="1"
+                    Text="hours"
+                    Style="{StaticResource SmallCountdownStyle}"/>
+                <Label 
+                    Grid.Column="3"
+                    Grid.Row="0"
+                    Text=":"
+                    Style="{StaticResource BigCountdownStyle}"/>
+                <Label 
+                    Grid.Column="4"
+                    Grid.Row="0"
+                    Text="{Binding Minutes, StringFormat='{0:D2}'}"
+                    Style="{StaticResource BigCountdownStyle}"/>
+                <Label 
+                    Grid.Column="4"
+                    Grid.Row="1"
+                    Text="minutes"  
+                    Style="{StaticResource SmallCountdownStyle}"/>
+            </Grid>
+            <StackLayout 
+                Grid.Row="3"
+                Margin="0, 0, 0, 48">
+                <Grid
+                    Margin="84, 12">
+                    <skor:GradientButton  
+                        HeightRequest="60"      
+                        CornerRadius="96"
+                        StartColor="{StaticResource ProgressPinkColor}"
+                        EndColor="{StaticResource ProgressBlueColor}"
+                        Command="{Binding RestartCommand}"/>
+                    <Label       
+                        Text="RESTART"  
+                        FontFamily="{StaticResource SourceSansRegular}"
+                        FontSize="{StaticResource FontSize24}" 
+                        TextColor="{StaticResource WhiteColor}"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        InputTransparent="True"/>
+                </Grid>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
