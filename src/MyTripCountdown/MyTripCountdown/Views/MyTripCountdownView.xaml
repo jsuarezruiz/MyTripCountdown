@@ -6,8 +6,10 @@
     xmlns:controls="clr-namespace:MyTripCountdown.Controls"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-    xmlns:skor="clr-namespace:Skor.Controls;assembly=Skor.Controls"
-    BackgroundColor="{StaticResource WhiteColor}">
+    xmlns:skor="clr-namespace:Skor.Controls;assembly=Skor.Controls"  
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    BackgroundColor="{StaticResource WhiteColor}" 
+    ios:Page.UseSafeArea="true">
     <ContentPage.Resources>
         <ResourceDictionary>
 
